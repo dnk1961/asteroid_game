@@ -1,10 +1,16 @@
+#Importing Libraries
 import pygame
 import sys
-from asteroid import Asteroid
-from constants import SCREEN_HEIGHT, SCREEN_WIDTH, PLAYER_RADIUS
+#Importing Modules
 from logger import log_state, log_event
+from asteroid import Asteroid
 from player import Player
 from asteroidfield import AsteroidField
+from shot import Shot
+from constants import SCREEN_HEIGHT, SCREEN_WIDTH, PLAYER_RADIUS
+
+
+
 
 def main():
     print(f"Starting Asteroids with pygame version: {pygame.version.ver}")
@@ -24,10 +30,12 @@ def main():
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
     asteroids = pygame.sprite.Group()
+    shots = pygame.sprite.Group()
     #Assigning class objects to the created groups
     Player.containers = (updatable, drawable)
     Asteroid.containers = (asteroids, updatable, drawable)
     AsteroidField.containers = (updatable)
+    Shot.containers = (shots, drawable, updatable)
     #init game objects
     player1 = Player(x, y, PLAYER_RADIUS)
     AsteroidField()
